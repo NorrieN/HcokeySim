@@ -8,6 +8,19 @@
 
 
 class Goalie : public player {
+    private:
+
+    float savePer;
+    float gaa;
+
+    float sSavePer;
+    float sGAA;
+    float sGoalsSavedAboveX;
+
+    public:
+
+
+    Goalie();
 };
 
 

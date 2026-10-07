@@ -4,10 +4,10 @@
 
 #ifndef HOCKEYSIM_DEFENCE_H
 #define HOCKEYSIM_DEFENCE_H
-#include "Player.h"
+#include "Skater.h"
 
 
-class Defence : public player {
+class Defence : public Skater {
 };
 
 

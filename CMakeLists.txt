@@ -22,7 +22,9 @@ add_executable(HockeySim main.cpp
         Defence.cpp
         Defence.h
         Goalie.cpp
-        Goalie.h)
+        Goalie.h
+        Skater.cpp
+        Skater.h)
 target_link_libraries(HockeySim
         Qt::Core
         Qt::Gui

@@ -4,10 +4,10 @@
 
 #ifndef HOCKEYSIM_FORWARD_H
 #define HOCKEYSIM_FORWARD_H
-#include "Player.h"
+#include "Skater.h"
 
 
-class Forward : public player {
+class Forward : public Skater {
 };
 
 
