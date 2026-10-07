@@ -12,12 +12,28 @@ class Goalie : public player {
 
     float savePer;
     float gaa;
+    float goalsSavedAboveX;
 
     float sSavePer;
     float sGAA;
     float sGoalsSavedAboveX;
+    float sTimeOnIce;
 
     public:
+
+    float getSavePer() const;
+    float getGAA() const;
+    float getGoalsSavedAboveX() const;
+    float getSSavePer() const;
+    void setSSavePer(float value);
+    float getSGAA() const;
+    void setSGAA(float value);
+    float getSGoalsSavedAboveX() const;
+    void setSGoalsSavedAboveX(float value);
+    float getTimeOnIce() const;
+    void setTimeOnIce(float value);
+
+
 
 
     Goalie();
