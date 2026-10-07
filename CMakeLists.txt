@@ -8,6 +8,10 @@ set(CMAKE_AUTOUIC ON)
 
 set(CMAKE_PREFIX_PATH "/Users/nathanael/Qt/6.12.0/macos/lib/cmake")
 
+include(FetchContent)
+FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz)
+FetchContent_MakeAvailable(json)
+
 find_package(Qt6 COMPONENTS
         Core
         Gui
@@ -24,10 +28,17 @@ add_executable(HockeySim main.cpp
         Goalie.cpp
         Goalie.h
         Skater.cpp
-        Skater.h)
-target_link_libraries(HockeySim
+        Skater.h
+        Team.cpp
+        Team.h
+        TeamMaker.cpp
+        TeamMaker.h
+        HockeyLeagueManager.cpp
+        HockeyLeagueManager.h)
+
+target_link_libraries(HockeySim PRIVATE
         Qt::Core
         Qt::Gui
         Qt::Widgets
+        nlohmann_json::nlohmann_json
 )
-
