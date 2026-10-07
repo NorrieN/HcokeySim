@@ -16,7 +16,13 @@ find_package(Qt6 COMPONENTS
 
 add_executable(HockeySim main.cpp
         player.cpp
-        player.h)
+        player.h
+        Forward.cpp
+        Forward.h
+        Defence.cpp
+        Defence.h
+        Goalie.cpp
+        Goalie.h)
 target_link_libraries(HockeySim
         Qt::Core
         Qt::Gui
