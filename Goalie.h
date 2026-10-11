@@ -7,7 +7,7 @@
 #include "Player.h"
 
 
-class Goalie : public player {
+class Goalie : public Player {
     private:
 
     float savePer;

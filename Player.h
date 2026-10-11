@@ -6,9 +6,9 @@
 #define HOCKEYSIM_PLAYER_H
 #include <string>
 
-using namespace std;
+class Player {
+    //TODO: stats for player height, weight, right vs left handed, age
 
-class player {
 private:
     std::string pName;
     int pNumber;
@@ -21,7 +21,7 @@ private:
     float assistsPerGame;
 
 public:
-    player(std::string iPName, int iPNumber);
+    Player(std::string iPName, int iPNumber);
     std::string getName() const;
     int getNumber() const;
     int getGoals() const;

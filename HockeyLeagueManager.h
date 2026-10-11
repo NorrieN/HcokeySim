@@ -6,19 +6,25 @@
 #define HOCKEYSIM_HOCKEYLEAGUEMANAGER_H
 #include <string>
 #include <tuple>
-#include <list>
+#include <vector>
 
+#include "team.h"
 
 class HockeyLeagueManager {
     public:
-    static std::list<std::tuple<char, char, std::string>> teamNames;
-    static void addNewTeam(std::tuple<char, char, std::string> teamTuple);
+    static const std::vector<std::tuple<char, char, char, std::string>>& getTeamNames();
+    static const std::vector<std::tuple<char, Team>>& getTeamList();
+    static void addNewTeamName(std::tuple<char, char, char, std::string> teamTuple);
+    static void addNewTeam(std::tuple<char, Team> teamTuple);
     static bool checkNameID(char NameID);
     static bool checkCityID(char cityID);
+    static bool checkTeamID(char teamID);
 
     private:
+    static std::vector<std::tuple<char, char, char, std::string>> teamNames;
+    static std::vector<std::tuple<char, Team>> teamList;
 
-    HockeyLeagueManager();
+    HockeyLeagueManager() = delete;
 };
 
 

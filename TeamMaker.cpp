@@ -32,6 +32,23 @@ static std::vector<NameEntry> loadNames(const std::string& path) {
     return result;
 }
 
+template <typename IsFree>
+static const NameEntry& pickUnused(const std::vector<NameEntry>& names,
+                                   IsFree isFree,
+                                   std::minstd_rand& rng) {
+    std::vector<const NameEntry*> available;
+    for (const auto& n : names) {
+        if (isFree(n.first)) {
+            available.push_back(&n);
+        }
+    }
+
+    if (available.empty()) {
+        throw std::runtime_error("No unused names left");
+    }
+
+    return *available[std::uniform_int_distribution<size_t>(0, available.size() - 1)(rng)];
+}
 
 Team TeamMaker::generateNewTeam(std::string teamName) {
     char cityID = -1;
@@ -43,42 +60,30 @@ Team TeamMaker::generateNewTeam(std::string teamName) {
         static const auto mascots = loadNames("NameSegmentFiles/TeamNameSegments.json");
         static std::minstd_rand nameRng{std::random_device{}()};
 
-        std::string cityName;
-        std::string mascotName;
+        const NameEntry& city   = pickUnused(cities,  HockeyLeagueManager::checkCityID, nameRng);
+        const NameEntry& mascot = pickUnused(mascots, HockeyLeagueManager::checkNameID, nameRng);
 
-        while (cityName.empty()) {
-            const auto& pick = cities[std::uniform_int_distribution<size_t>(0, cities.size() - 1)(nameRng)];
-
-            if (HockeyLeagueManager::checkCityID(pick.first)) {
-
-                cityID = pick.first;
-                cityName = pick.second;
-            }
-        }
-
-        while (mascotName.empty()) {
-            const auto& pick = mascots[std::uniform_int_distribution<size_t>(0, mascots.size() - 1)(nameRng)];
-
-            if (HockeyLeagueManager::checkNameID(pick.first)) {
-
-                nameID = pick.first;
-                mascotName = pick.second;
-            }
-        }
-
-        teamName = cityName + " " + mascotName;
+        cityID   = city.first;
+        nameID   = mascot.first;
+        teamName = city.second + " " + mascot.second;
     }
     else {
         int next = 51;
-        for (const auto& t : HockeyLeagueManager::teamNames) {
+        for (const auto& t : HockeyLeagueManager::getTeamNames()) {
             next = std::max({next, std::get<0>(t) + 1, std::get<1>(t) + 1});
         }
-        cityID = next;
-        nameID = next;
+        cityID = static_cast<char>(next);
+        nameID = static_cast<char>(next);
+    }
+
+    char teamID = 0;
+    while (!HockeyLeagueManager::checkTeamID(teamID)) {
+        teamID++;
     }
 
     Team newTeam = Team(teamName);
-    HockeyLeagueManager::addNewTeam(std::make_tuple(cityID, nameID, teamName));
+    HockeyLeagueManager::addNewTeamName(std::make_tuple(cityID, nameID, teamID, teamName));
+
 
     return newTeam;
 }

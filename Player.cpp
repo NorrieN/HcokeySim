@@ -10,14 +10,15 @@
 
 using namespace std;
 
-player::player(std::string iPName, int iPNumber)
+Player::Player(std::string iPName, int iPNumber)
     :  pName(iPName), pNumber(iPNumber){}
 
 
-std::string player::getName() const {
+std::string Player::getName() const {
     return pName;
 }
 
-int player::getNumber() const {
+int Player::getNumber() const {
     return pNumber;
 }
+
