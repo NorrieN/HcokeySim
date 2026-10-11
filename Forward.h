@@ -11,7 +11,7 @@
 class Forward : public Skater {
     public:
     using Skater::Skater;
-    std::vector<int> randomStats(double mean = 80.0, double stddev = 7.0, int lowerBound = 50, int upperBound = 100);
+    std::vector<int> randomStats(double mean = 79.5, double stddev = 6.8, int lowerBound = 50, int upperBound = 100);
 
 
     Forward();
