@@ -131,7 +131,14 @@ std::vector<int> Forward::randomStats(double mean, double stddev, int lowerBound
     return playerStats;
 }
 
-
+std::vector<int> Forward::getStats(int index) {
+    if (index != -1) {
+        std::vector<int> returnValue;
+        returnValue.push_back(stats[index]);
+        return returnValue;
+    }
+    return stats;
+}
 
 
 

@@ -9,9 +9,13 @@
 
 
 class Forward : public Skater {
+private:
+    std::vector<int> stats;
+
     public:
     using Skater::Skater;
     std::vector<int> randomStats(double mean = 79.5, double stddev = 6.8, int lowerBound = 50, int upperBound = 100);
+    std::vector<int> getStats(int index = -1);
 
 
     Forward();

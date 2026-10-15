@@ -5,14 +5,16 @@
 #ifndef HOCKEYSIM_TEAM_H
 #define HOCKEYSIM_TEAM_H
 #include <list>
+#include <vector>
 #include "Player.h"
 
 using namespace std;
 
 class Team {
     private:
-    std::list<Player> playerList;
+    std::vector<Player> playerList;
     std::string teamName;
+    void addPlayersToTeam();
 
     public:
 
